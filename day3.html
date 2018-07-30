@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>计算属性和侦听器</title>
+		<script type="text/javascript" src="js/vue.js">
+			
+		</script>
+	</head>
+	<body>
+		<div id="app">
+			姓:<input type="text" v-model="firstName" />
+			名:<input type="text" v-model="lastName" />
+			<div>{{fullName}}</div>
+			<div>{{count}}</div>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				firstName: "",
+				lastName: "",
+				count: 0
+			},
+			computed: {//计算属性具有缓存，如果值没有变则会使用缓存
+				fullName: function(){
+					return this.firstName + " " + this.lastName;
+				}
+			},
+			watch: {
+				fullName:function(){
+					this.count ++ ;
+				}
+			}
+		})
+	</script>
+</html>
+<!--
+	侦听器：watch
+	检测数据或计算属性发生变化
+	
+-->

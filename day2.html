@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>属性绑定和双向数据绑定</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 属性绑定 -->
+			<div v-bind:title="title" v-bind:id="1+2">hello world</div>
+			<input type="text" :value="message" v-model="message"/>
+			<div>{{message}}</div>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				title: "this is hello world",
+				message: '绑定'
+			}
+		})
+	</script>
+</html>

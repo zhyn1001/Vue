@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>todolist</title>
+		<script type="text/javascript" src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div>组件与实例的关系</div>
+		<div>每一个组件就是一个实例</div>
+		<div id="app">
+			<div>
+				<input type="text" v-model="inputValue" />
+				<button @click="handleClick">提交</button>
+				<ul>
+					<!--属性传值  :content-->
+					<!--@delete：父组件监听自定义delete事件,并触发父组件的handleDelete方法-->
+					<todo-item v-for="(item, index) of list"
+						:content="item"
+						:index="index"
+						@delete="handleDelete"
+					></todo-item>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script>
+		/*全局组件*/
+		Vue.component('todo-item',{
+			template: '<li @click="handleOne">{{content}}</li>',
+			props:['content','index'],/*接受参数*/
+			methods:{
+				handleOne:function(){
+					this.$emit('delete', this.index);//触发自定义事件
+				}
+			}
+		})
+		
+		/*局部组件:需要在实例中注册
+		 conponents:{
+		 	'todoitem':TodoItem
+		 }
+		 * */
+//		var TodoItem = {
+//			template:'<li>{{item}}</li>'
+//		}
+		new Vue({
+			el:"#app",
+			data:{
+				inputValue:'',
+				list:[]
+			},
+			methods:{
+				handleClick:function(){
+					this.list.push(this.inputValue);
+					this.inputValue = '';
+				},
+				handleDelete:function(index){
+					this.list.splice(index, 1);
+				}
+			}
+		})
+	</script>
+</html>

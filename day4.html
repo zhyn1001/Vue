@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-if,v-for,v-show</title>
+		<script type="text/javascript" src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div v-if="show">hello world</div>
+			<button @click="handleClick">toggle</button>
+			<ul>
+				<li v-for="(item, index) in list" :key="index">{{item}}</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			/*template:'',//模板*/
+			data:{
+				show: true,
+				list:[1, 2, 3]
+			},
+			methods: {
+				handleClick:function(){
+					this.show = !this.show ;
+				}
+			}
+		})
+	</script>
+</html>
+<!--
+	v-show: 只是将元素隐藏
+	v-if：属性为false时会将元素直接删除
+	v-for：循环 ---(:key)提升for循环的性能key值不能重复
+-->

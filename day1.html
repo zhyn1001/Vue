@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue入门</title>
+		<script type="text/javascript" src="./js/vue.js"></script>
+	</head>
+	<body>
+		<!--vue 挂载点-->
+		<!--挂载点的内容为模板-->
+		<div id="app">
+			<h1 v-on:click="handleClick">{{message}} 小明</h1>
+			<h2 v-text="number"></h2>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: "#app",
+			/*template:'',//模板*/
+			data:{
+				message: "hello",
+				number:123
+			},
+			methods:{//方法
+				handleClick:function(){
+					this.message = '你好';
+				}
+			}
+		})
+	</script>
+</html>
+<!--
+	例：<h1>123</h1>
+	v-text:会转义：输出---<h1>123</h1>
+	
+	v-html:不会转义：输出---123
+-->
